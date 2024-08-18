@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Saldo extends Model
 {
     use HasFactory;
+
+    /**
+     * @var string
+     */
+    protected $table = 'saldos';
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'id',
+        'saldo',
+        'id_usuario',
+    ];
 }

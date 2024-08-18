@@ -25,8 +25,8 @@ class StoreUsuarioRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'cpf' => 'required|unique',
-            'email' => 'required|unique',
+            'cpf' => 'required',
+            'email' => 'required',
             'senha' => 'required',
             'tipo' => 'required'
         ];

@@ -54,10 +54,11 @@ class UsuarioController extends Controller
 
         try{
 
-             $product = $this->usuarioRepositoryInterface->store($details);
+             $usuario = $this->usuarioRepositoryInterface->store($details);
 
              DB::commit();
-             return ResponseClass::sendResponse(new UsuarioResource($product),'Usuario criado com sucesso',201);
+
+             return ResponseClass::sendResponse(new UsuarioResource($usuario),'Usuario criado com sucesso',201);
 
         }catch(\Exception $ex){
             return ResponseClass::rollback($ex);

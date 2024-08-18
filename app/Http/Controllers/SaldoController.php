@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Saldo;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\SaldoResource;
 use App\Http\Requests\StoreSaldoRequest;
 use App\Http\Requests\UpdateSaldoRequest;
-use App\Interfaces\Interfaces\SaldoRepositoryInterface;
-use App\Models\Saldo;
 use App\Classes\ApiResponseClass as ResponseClass;
-use App\Http\Resources\SaldoResource;
-use Illuminate\Support\Facades\DB;
+use App\Interfaces\Interfaces\SaldoRepositoryInterface;
+use App\Interfaces\Interfaces\TransferenciaRepositoryInterface;
 
 class SaldoController extends Controller
 {
     private SaldoRepositoryInterface $saldoRepositoryInterface;
+
+    public function __construct(SaldoRepositoryInterface $saldoRepositoryInterface)
+    {
+        $this->saldoRepositoryInterface = $saldoRepositoryInterface;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -38,8 +44,11 @@ class SaldoController extends Controller
     {
         $details =[
             'saldo' => $request->saldo,
+            'id_usuario' => $request->id_usuario
         ];
+
         DB::beginTransaction();
+
         try{
              $saldo = $this->saldoRepositoryInterface->store($details);
 

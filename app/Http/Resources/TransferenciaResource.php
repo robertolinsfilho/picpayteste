@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SaldoResource extends JsonResource
+class TransferenciaResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,10 @@ class SaldoResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' =>$this->id,
-            'id_usuario' => $this->id_usuario,
-            'saldo' => $this->saldo,
+            'id' => $this->id,
+            'value' =>$this->value,
+            'payer' => $this->payer,
+            'payee' => $this->payee
         ];
     }
 }

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('transferencias', function (Blueprint $table) {
             $table->id();
+            $table->decimal('value',8,2);
+            $table->string('payer');
+            $table->string('payee');
             $table->timestamps();
         });
     }

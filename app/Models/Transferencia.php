@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Transferencia extends Model
 {
     use HasFactory;
+
+    /**
+     * @var string
+     */
+    protected $table = 'transferencias';
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'id',
+        'value',
+        'payer',
+        'payee',
+    ];
 }
