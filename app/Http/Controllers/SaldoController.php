@@ -30,14 +30,6 @@ class SaldoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreSaldoRequest $request)
@@ -68,14 +60,6 @@ class SaldoController extends Controller
         $product = $this->saldoRepositoryInterface->getById($id);
 
         return ResponseClass::sendResponse(new SaldoResource($product),'',200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Saldo $saldo)
-    {
-        //
     }
 
     /**

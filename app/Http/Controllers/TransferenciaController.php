@@ -39,19 +39,19 @@ class TransferenciaController extends Controller
             'payer' => $request->payer,
             'payee' => $request->payee,
         ];
+        if(!$this->transferenciaRepositoryInterface->verifyAuthorization()){
+            return ResponseClass::errorAuthorization();
+        }
         if(!$this->transferenciaRepositoryInterface->verifyType($details)){
             return ResponseClass::errortype();
         }
-        if(!$this->transferenciaRepositoryInterface->verifyExists($details))
-        {
+        if(!$this->transferenciaRepositoryInterface->verifyExists($details)){
             return ResponseClass::errorUserNotFound();
         }
         if(!$this->transferenciaRepositoryInterface->verifyFounders($details)){
             return ResponseClass::errorFounders();
         }
-        if(!$this->transferenciaRepositoryInterface->verifyAuthorization()){
-            return ResponseClass::errorFounders();
-        }
+
 
         DB::beginTransaction();
         try{
@@ -95,13 +95,5 @@ class TransferenciaController extends Controller
         }catch(\Exception $ex){
             return ResponseClass::rollback($ex);
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Transferencia $transferencia)
-    {
-        //
     }
 }

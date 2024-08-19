@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Interfaces\Interfaces\TransferenciaRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use GuzzleHttp\Client;
 
 class TransferenciaRepository implements TransferenciaRepositoryInterface
 {
@@ -91,6 +92,15 @@ class TransferenciaRepository implements TransferenciaRepositoryInterface
         return true;
     }
     public function verifyAuthorization(){
+        $client = new Client();
 
+        $apiUrl = "https://util.devi.tools/api/v2/authorize";
+        try {
+            $response = $client->get($apiUrl);
+            $data = json_decode($response->getBody(), true);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }
